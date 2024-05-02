@@ -49,131 +49,65 @@ class Mattermost {
         this.authToken = 'Bearer ' + authToken;
     }
 
-
-
-    async getTeams() {
-        const url = this.baseUrl + '/plugins/focalboard/api/v2/teams';
-
+    async callApi(uri, method = 'GET', body = null, baseUrl = this.baseUrl) {
+        const url = `${baseUrl}/${uri}`;
         const res = await fetch(url, {
-            method: 'GET',
+            method,
             headers: {
                 'Authorization': this.authToken,
                 'X-CSRF-Token': this.csrfToken,
                 'X-Requested-With': 'XMLHttpRequest',
                 'Accept': 'application/json'
-            }
+            },
+            body
         })
 
         const data = await res.json();
 
         return data;
+
+    }
+
+    async getTeams() {
+        return await this.callApi(
+            'plugins/focalboard/api/v2/teams'
+        );
     }
 
     async getBoards(teamId) {
-        const url = `${this.baseUrl}/plugins/focalboard/api/v2/teams/${teamId}/boards`;
-
-        const res = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Authorization': this.authToken,
-                'X-CSRF-Token': this.csrfToken,
-                'X-Requested-With': 'XMLHttpRequest',
-                'Accept': 'application/json'
-            }
-        })
-
-        const data = await res.json();
-
-        return data;
+        return await this.callApi(
+            `plugins/focalboard/api/v2/teams/${teamId}/boards`
+        );
     }
 
     async getBoardMetaData(boardId) {
-        const url = `${this.baseUrl}/plugins/focalboard/api/v2/boards/${boardId}`;
-
-        const res = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Authorization': this.authToken,
-                'X-CSRF-Token': this.csrfToken,
-                'X-Requested-With': 'XMLHttpRequest',
-                'Accept': 'application/json'
-            }
-        })
-
-        const data = await res.json();
-
-        return data;
+        return await this.callApi(
+            `plugins/focalboard/api/v2/boards/${boardId}`
+        );
     }
 
     async getCards(boardId) {
-        const url = `${this.baseUrl}/plugins/focalboard/api/v2/boards/${boardId}/cards`;
-
-        const res = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Authorization': this.authToken,
-                'X-CSRF-Token': this.csrfToken,
-                'X-Requested-With': 'XMLHttpRequest',
-                'Accept': 'application/json'
-            }
-        })
-
-        const data = await res.json();
-
-        return data;
+        return await this.callApi(
+            `plugins/focalboard/api/v2/boards/${boardId}/cards`
+        );
     }
 
     async getBoardSharing(boardId) {
-        const url = `${this.baseUrl}/plugins/focalboard/api/v2/users/me/memberships`;
-
-        const res = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Authorization': this.authToken,
-                'X-CSRF-Token': this.csrfToken,
-                'X-Requested-With': 'XMLHttpRequest',
-                'Accept': 'application/json'
-            }
-        })
-
-        const data = await res.json();
-
-        return data;
+        return await this.callApi(
+            `plugins/focalboard/api/v2/boards/${boardId}/sharing`
+        );
     }
 
     async searchBoards(query) {
-        const url = `${this.baseUrl}/plugins/focalboard/api/v2/boards/search?q=${query}`;
-
-        const res = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Authorization': this.authToken,
-                'X-CSRF-Token': this.csrfToken,
-                'X-Requested-With': 'XMLHttpRequest',
-                'Accept': 'application/json'
-            }
-        })
-
-        const data = await res.json();
-
-        return data;
+        return await this.callApi(
+            `plugins/focalboard/api/v2/boards/search?query=${query}`
+        );
     }
 
     async me() {
-        const url = this.baseUrl + '/api/v4/users/me';
-
-        const res = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Authorization': this.authToken,
-                'X-CSRF-Token': this.csrfToken,
-                'X-Requested-With': 'XMLHttpRequest',
-            }
-        })
-
-        const data = await res.json();
-
-        return data;
+        return await this.callApi(
+            'api/v4/users/me'
+        );
     }
 
     filterToUser(userId, card) {
