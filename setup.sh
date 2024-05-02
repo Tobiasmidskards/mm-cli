@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # Clone the repository
-# git clone https://github.com/tobiasmidskards/mm-cli.git
+git clone https://github.com/tobiasmidskards/mm-cli.git
 
 # Change the directory
-# cd mm-cli
+cd mm-cli
 
 # Function to read user inputs
 get_inputs() {
