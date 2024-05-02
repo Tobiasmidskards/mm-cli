@@ -8,13 +8,16 @@ cd mm-cli
 
 # Function to read user inputs
 get_inputs() {
-    echo "What is your email/username?"
+    echo -e "\nWelcome to the Mattermost CLI tool setup!"
+    echo -e "\x1B[1mNote: Your password will be stored in a .env file.\x1B[0m"
+
+    echo -e "\n\x1B[33mWhat is your Mattermost username?\x1B[0m"
     read username
 
-    echo "What is your Mattermost host? (e.g. https://todo.example.com)"
+    echo -e "\n\x1B[33mWhat is your Mattermost host? (e.g. https://todo.example.com)"
     read host
 
-    echo "What is your password?"
+    echo -e "\n\x1B[33mWhat is your password?"
     read -s password  # -s option hides password input
 
     # Create or overwrite the .env file
@@ -23,9 +26,9 @@ get_inputs() {
     echo "MM_HOST=$host" >> .env
 
     # Ask if the file is correct and show the content
-    echo "Please review the following details:"
+    echo -e "\nPlease review the following details: \n"
     cat .env
-    echo "Are these details correct? (Y/n)"
+    echo "\n\n\x1B[32mIs this correct? (Y/n)\x1B[0m"
     read correct
 
     # Check user's confirmation
@@ -38,11 +41,11 @@ get_inputs() {
 
 # Function to install dependencies and the CLI tool
 install_tools() {
-    echo "Installing dependencies and the CLI tool..."
+    echo -e "\n\x1B[33mInstalling dependencies...\x1B[0m"
     npm install
     npm install -g .
-    echo "Installation complete. You can now use the Mattermost CLI tool."
-    echo "Run 'mmv' to see your tasks."
+    echo -e "\n\x1B[32mInstallation complete!\x1B[0m"
+    echo -e "\nRun 'mmv' to see your tasks."
 }
 
 # Start the input loop

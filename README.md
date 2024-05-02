@@ -5,7 +5,10 @@ This Mattermost CLI Tool is designed to interact with the Mattermost API, allowi
 # Quick Start
 
 ```bash
-curl -o- https://raw.githubusercontent.com/tobiasmidskards/mm-cli/master/setup.sh | bash
+curl -o setup.sh https://raw.githubusercontent.com/tobiasmidskards/mm-cli/master/setup.sh \
+    && chmod +x setup.sh \
+    && ./setup.sh \
+    && rm setup.sh
 ```
 
 ## Features
