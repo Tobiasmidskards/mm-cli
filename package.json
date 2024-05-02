@@ -1,0 +1,14 @@
+{
+    "name": "mattermost-cli",
+    "version": "1.0.0",
+    "description": "CLI tool for Mattermost",
+    "main": "src/index.js",
+    "bin": {
+        "mmv": "./src/index.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "dotenv": "^16.4.5"
+    }
+}
