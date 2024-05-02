@@ -19,6 +19,7 @@ const main = async () => {
     printer.print(
         await mm.collectData()
     );
+    
 }
 
 main();
