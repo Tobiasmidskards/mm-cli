@@ -14,10 +14,10 @@ get_inputs() {
     echo -e "\n\x1B[33mWhat is your Mattermost username?\x1B[0m"
     read username
 
-    echo -e "\n\x1B[33mWhat is your Mattermost host? (e.g. https://todo.example.com)"
+    echo -e "\n\x1B[33mWhat is your Mattermost host? (e.g. https://todo.example.com)\x1B[0m"
     read host
 
-    echo -e "\n\x1B[33mWhat is your password?"
+    echo -e "\n\x1B[33mWhat is your password?\x1B[0m"
     read -s password  # -s option hides password input
 
     # Create or overwrite the .env file
@@ -28,7 +28,7 @@ get_inputs() {
     # Ask if the file is correct and show the content
     echo -e "\nPlease review the following details: \n"
     cat .env
-    echo "\n\n\x1B[32mIs this correct? (Y/n)\x1B[0m"
+    echo -e "\n\n\x1B[32mIs this correct? (Y/n)\x1B[0m"
     read correct
 
     # Check user's confirmation
